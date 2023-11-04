@@ -24,7 +24,7 @@ jobs:
 
       - name: GKE credentials
         run: |-
-          gcloud container clusters get-credentials your-cluster-name --zone your-cluster-zone --project ${{ secrets.GKE_PROJECT }}
+          gcloud container clusters get-credentials tech-challenge --zone us-central1-a --project ${{ secrets.GKE_PROJECT }}
 
       - name: Deploy
         run: |-
