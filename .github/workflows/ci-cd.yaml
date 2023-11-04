@@ -1,4 +1,4 @@
-name: Deploy - GKE
+name: Tech Challenge - Deploy Infrastructure - GKE
 
 on:
   push:
@@ -7,7 +7,6 @@ on:
     paths:
       - "k8s/**"
       - ".github/workflows/**"
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
