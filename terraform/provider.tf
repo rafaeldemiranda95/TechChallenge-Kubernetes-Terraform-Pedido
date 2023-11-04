@@ -1,7 +1,5 @@
-provider "aws" {
-  region = "us-west-1"  # Altere para a sua região AWS desejada
-}
-
-locals {
-  cluster_name = "my-eks-cluster"
+provider "google" {
+  credentials = file("path-to-your-credentials-file.json")
+  project     = "your-gcp-project-id"
+  region      = "us-west1" # Escolha a região adequada
 }

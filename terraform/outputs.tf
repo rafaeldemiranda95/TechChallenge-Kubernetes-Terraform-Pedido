@@ -1,24 +1,19 @@
 output "vpc_id" {
   description = "The ID of the VPC"
-  value       = module.vpc.vpc_id
+  value       = google_compute_network.vpc.id
 }
 
 output "subnet_ids" {
   description = "The IDs of the subnets"
-  value       = module.vpc.private_subnets
+  value       = google_compute_subnetwork.subnetwork.id
 }
 
 output "cluster_endpoint" {
   description = "Endpoint for EKS control plane."
-  value       = module.eks.cluster_endpoint
+  value       = google_container_cluster.cluster.endpoint
 }
 
-output "cluster_security_group_id" {
-  description = "Security group id attached to the EKS cluster."
-  value       = module.eks.cluster_security_group_id
-}
-
-output "cluster_iam_role_name" {
-  description = "IAM role name attached to EKS cluster."
-  value       = module.eks.cluster_iam_role_name
+output "cluster_ca_certificate" {
+  description = "The cluster ca certificate (base64 encoded)"
+  value       = google_container_cluster.cluster.master_auth.0.cluster_ca_certificate
 }
