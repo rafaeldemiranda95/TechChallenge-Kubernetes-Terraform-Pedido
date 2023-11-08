@@ -30,5 +30,5 @@ variable "JWT_SECRET" {
 
 variable "key_name" {
   description = "The key name to use for the instance"
-  default     = "your-default-key-name"  # Por favor, substitua 'your-default-key-name' pelo nome padrão da sua chave, se houver.
+  default     = "your-default-key-name"
 }
