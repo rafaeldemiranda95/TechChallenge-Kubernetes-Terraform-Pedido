@@ -7,23 +7,23 @@ metadata:
 spec:
   containers:
     - name: pedido
-      image: [sua-imagem-pedido] # Substitua pelo nome da sua imagem Docker
+      image: rafaeldemiranda/techchallenge-pedido:latest
       ports:
-        - containerPort: 3000 # Ajuste se sua aplicação usa uma porta diferente
+        - containerPort: 3000
       env:
         - name: DB_HOST
-          value: [seu-endereco-db-pedido] # Substitua pelo endereço do banco de dados
+          value: [seu-endereco-db-pedido]
         - name: DB_USERNAME
-          value: [seu-usuario-db-pedido] # Substitua pelo nome de usuário do banco de dados
+          value: [seu-usuario-db-pedido]
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: tech-challenge
-              key: db_password_pedido # A chave do Secret que contém a senha do banco de dados
+              key: db_password_pedido
         - name: DB_NAME
-          value: "TechChallenge-Pedido" # O nome do banco de dados
+          value: "TechChallenge-Pedido"
         - name: JWT_SECRET
           valueFrom:
             secretKeyRef:
               name: tech-challenge
-              key: jwt_secret # A chave do Secret que contém o segredo JWT
+              key: jwt_secret
