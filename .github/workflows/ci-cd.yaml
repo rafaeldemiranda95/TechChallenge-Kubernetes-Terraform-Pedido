@@ -1,9 +1,9 @@
 name: Tech Challenge - Deploy Infrastructure - GKE
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   pull_request:
     branches:
       - main
