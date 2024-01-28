@@ -1,9 +1,6 @@
 name: Tech Challenge - Deploy Infrastructure - GKE
 
 on:
-  # push:
-  #   branches:
-  #     - main
   pull_request:
     branches:
       - main
@@ -31,10 +28,18 @@ jobs:
           service_account_key: ${{ secrets.SA_KEY }}
           export_default_credentials: true
 
-      # Terraform Init e Apply
+      # Terraform Init
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform
+
+      # Importação do recurso VPC, se necessário
+      - name: Import VPC if exists
+        run: |
+          terraform import google_compute_network.vpc projects/${{ secrets.PROJECT_ID }}/global/networks/tech-challenge-vpc || true
+        working-directory: ./terraform
+
+      # Terraform Apply
       - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: ./terraform
