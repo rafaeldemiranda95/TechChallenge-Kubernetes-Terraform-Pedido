@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pagamento-pod
+  labels:
+    app: pagamento
+spec:
+  containers:
+    - name: pagamento
+      image: [seu-image-pagamento] # Substitua pelo nome da sua imagem Docker
+      ports:
+        - containerPort: 3000 # Ajuste se sua aplicação usa uma porta diferente
+      env:
+        - name: DB_HOST
+          value: [seu-endereco-db-pagamento] # Substitua pelo endereço do banco de dados
+        - name: DB_USERNAME
+          value: [seu-usuario-db-pagamento] # Substitua pelo nome de usuário do banco de dados
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: tech-challenge
+              key: db_password_pagamento # A chave do Secret que contém a senha do banco de dados
+        - name: DB_NAME
+          value: "TechChallenge-Pagamento" # O nome do banco de dados
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: tech-challenge
+              key: jwt_secret # A chave do Secret que contém o segredo JWT

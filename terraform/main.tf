@@ -2,6 +2,7 @@ provider "google" {
   project = "tech-challenge"
   region  = "us-west1"
 }
+
 resource "google_compute_network" "vpc" {
   name                    = "tech-challenge-vpc"
   auto_create_subnetworks = false
@@ -21,9 +22,12 @@ resource "google_container_cluster" "cluster" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
+  network    = google_compute_network.vpc.name
+  subnetwork = google_compute_subnetwork.subnetwork.name
+
   node_pool {
     name       = "tech-challenge-node-pool"
-    node_count = 1
+    node_count = 3
 
     node_config {
       machine_type = "g1-small"
@@ -37,4 +41,22 @@ resource "google_container_cluster" "cluster" {
   }
 }
 
+output "vpc_id" {
+  description = "O ID da VPC"
+  value       = google_compute_network.vpc.id
+}
 
+output "subnet_ids" {
+  description = "Os IDs das sub-redes"
+  value       = google_compute_subnetwork.subnetwork.id
+}
+
+output "cluster_endpoint" {
+  description = "Ponto de extremidade para o plano de controle do GKE."
+  value       = google_container_cluster.cluster.endpoint
+}
+
+output "cluster_ca_certificate" {
+  description = "O certificado ca do cluster (codificado em base64)"
+  value       = google_container_cluster.cluster.master_auth.0.cluster_ca_certificate
+}
