@@ -1,7 +1,7 @@
-# provider "google" {
-#   project = "tech-challenge" # Substitua pelo seu ID de projeto do GCP
-#   region  = "us-west1"       # Região onde o Terraform criará os recursos, se necessário
-# }
+provider "google" {
+  project = "tech-challenge" # Substitua pelo seu ID de projeto do GCP
+  region  = "us-west1"       # Região onde o Terraform criará os recursos, se necessário
+}
 
 resource "google_compute_network" "vpc" {
   name                    = "tech-challenge-vpc"
