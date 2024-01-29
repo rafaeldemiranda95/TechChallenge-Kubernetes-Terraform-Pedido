@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
         - name: server
-          image: rafaeldemiranda/techchallenge:2.0.3
+          image: rafaeldemiranda/techchallenge:2.0.3 # Sem alterações aqui
           ports:
             - containerPort: 3000
           env:
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: tech-challenge-pedido
+                  name: tech-challenge
                   key: jwt_secret
