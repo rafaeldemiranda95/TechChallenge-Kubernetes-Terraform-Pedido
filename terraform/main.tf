@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = jsonencode(var.gcp_credentials_file)
+  credentials = jsonencode(var.gcp_credentials_json)
   project     = var.gcp_project_id
   region      = "us-central1"
 }
