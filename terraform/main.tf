@@ -1,7 +1,7 @@
 provider "google" {
-  # credentials = var.gcp_credentials_file
-  project = var.gcp_project_id
-  region  = "us-central1"
+  credentials = jsonencode(var.gcp_credentials_file)
+  project     = var.gcp_project_id
+  region      = "us-central1"
 }
 
 resource "google_compute_network" "vpc" {
