@@ -32,3 +32,14 @@ variable "key_name" {
   description = "The key name to use for the instance"
   default     = "your-default-key-name"
 }
+
+
+variable "gcp_credentials_file" {
+  description = "Path to the GCP credentials file"
+  type        = string
+}
+
+variable "gcp_project_id" {
+  description = "GCP Project ID"
+  type        = string
+}
