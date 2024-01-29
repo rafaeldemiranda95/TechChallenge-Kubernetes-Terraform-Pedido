@@ -5,10 +5,10 @@ on:
     branches:
       - main
 
-# env:
-#   TF_LOG: DEBUG
-#   TF_VAR_gcp_credentials_file: ${{ secrets.GCP_CREDENTIALS_JSON }}
-#   TF_VAR_gcp_project_id: ${{ secrets.GCP_PROJECT_ID }}
+env:
+  TF_LOG: DEBUG
+  TF_VAR_gcp_credentials_file: ${{ secrets.GCP_CREDENTIALS_JSON }}
+  TF_VAR_gcp_project_id: ${{ secrets.GCP_PROJECT_ID }}
 
 jobs:
   deploy:
@@ -37,9 +37,9 @@ jobs:
         run: terraform validate
         working-directory: terraform
 
-      # - name: Terraform Plan
-      #   run: terraform plan
-      #   working-directory: terraform
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: terraform
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
