@@ -1,12 +1,15 @@
 name: Tech Challenge - Deploy Infrastructure - GKE
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    paths:
-      - "k8s/**"
-      - ".github/workflows/**"
+  # pull_request:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - "k8s/**"
+  #     - ".github/workflows/**"
 
 jobs:
   deploy:
