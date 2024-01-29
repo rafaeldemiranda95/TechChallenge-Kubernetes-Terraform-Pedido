@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: terraform  # Define o diretório de trabalho padrão para todos os passos
-
+        working-directory: terraform  
+        
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: "1.1.0"  # Substitua pela versão desejada do Terraform
+          terraform_version: "1.1.0"  
 
       - name: Terraform Init and Apply
         run: |
@@ -35,14 +35,13 @@ jobs:
 
       - name: Install gke-gcloud-auth-plugin
         run: gcloud components install gke-gcloud-auth-plugin
-        working-directory: .  # Retorna para o diretório raiz para este passo
+        working-directory: .  
 
       - name: GKE credentials
         run: |
           gcloud container clusters get-credentials tech-challenge-cluster --zone us-central1 --project ${{ secrets.PROJECT_ID }}
-        working-directory: .  # Retorna para o diretório raiz para este passo
-
+        working-directory: .  
       - name: Deploy Kubernetes Configurations
         run: |
           kubectl apply -f k8s/
-        working-directory: .  # Retorna para o diretório raiz para este passo
+        working-directory: .  
