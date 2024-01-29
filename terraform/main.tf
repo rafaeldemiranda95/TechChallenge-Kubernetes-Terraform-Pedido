@@ -1,13 +1,12 @@
-resource "google_compute_network" "vpc" {
-  name                    = "tech-challenge-vpc"
-  auto_create_subnetworks = false
+# Utiliza a VPC existente
+data "google_compute_network" "vpc" {
+  name = "tech-challenge-vpc"
 }
 
-resource "google_compute_subnetwork" "subnetwork" {
-  name          = "tech-challenge-subnetwork"
-  ip_cidr_range = "10.0.1.0/24"
-  region        = "us-central1"
-  network       = google_compute_network.vpc.id
+# Utiliza a subrede existente, se necessário. Se não, remova esta seção e ajuste a referência no cluster.
+data "google_compute_subnetwork" "subnetwork" {
+  name   = "tech-challenge-subnetwork"
+  region = "us-central1"
 }
 
 resource "google_container_cluster" "cluster" {
@@ -17,8 +16,8 @@ resource "google_container_cluster" "cluster" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = google_compute_network.vpc.name
-  subnetwork = google_compute_subnetwork.subnetwork.name
+  network    = data.google_compute_network.vpc.name
+  subnetwork = data.google_compute_subnetwork.subnetwork.name
 
   node_pool {
     name       = "tech-challenge-node-pool"
