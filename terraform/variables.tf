@@ -28,7 +28,8 @@ variable "JWT_SECRET" {
   default     = ""
 }
 
-variable "key_name" {
-  description = "The key name to use for the instance"
-  default     = "your-default-key-name"  # Por favor, substitua 'your-default-key-name' pelo nome padrão da sua chave, se houver.
+variable "google_credentials" {
+  description = "Google Cloud credentials JSON"
+  type        = string
+  default     = ""
 }
