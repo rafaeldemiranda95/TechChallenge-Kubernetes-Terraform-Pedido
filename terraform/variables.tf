@@ -28,7 +28,7 @@ variable "JWT_SECRET" {
   default     = ""
 }
 
-variable "google_credentials" {
+variable "google_application_credentials" {
   description = "Google Cloud credentials JSON"
   type        = string
   default     = ""
