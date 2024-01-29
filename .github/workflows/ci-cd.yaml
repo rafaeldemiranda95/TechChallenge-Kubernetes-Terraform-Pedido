@@ -39,7 +39,7 @@ jobs:
 
       - name: GKE credentials
         run: |
-          gcloud container clusters get-credentials tech-challenge --zone us-central1 --project ${{ secrets.PROJECT_ID }}
+          gcloud container clusters get-credentials TechChallenge --zone us-central1 --project ${{ secrets.PROJECT_ID }}
         working-directory: .  # Retorna para o diretório raiz para este passo
 
       - name: Deploy Kubernetes Configurations
