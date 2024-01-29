@@ -1,6 +1,6 @@
 provider "google" {
   project = "tech-challenge"
-  region  = "us-west1"
+  region  = "us-central1"
 }
 resource "google_compute_network" "vpc" {
   name                    = "tech-challenge-vpc"
