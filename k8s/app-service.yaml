@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pagamento-service
+  name: server-service
 spec:
   selector:
-    app: pagamento
+    app: server
   type: LoadBalancer
   ports:
     - protocol: TCP
       targetPort: 80
-      port: 3002
-      nodePort: 30002
+      port: 3000
+      nodePort: 30000
