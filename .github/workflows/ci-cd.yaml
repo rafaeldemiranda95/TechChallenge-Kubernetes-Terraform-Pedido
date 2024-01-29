@@ -5,9 +5,9 @@ on:
     branches:
       - main
 
-# env:
-#   TF_VAR_gcp_credentials_json: ${{ secrets.GCP_CREDENTIALS_JSON }}
-#   TF_VAR_gcp_project_id: ${{ secrets.GCP_PROJECT_ID }}
+env:
+  TF_VAR_gcp_credentials_file: ${{ secrets.GCP_CREDENTIALS_JSON }}
+  TF_VAR_gcp_project_id: ${{ secrets.GCP_PROJECT_ID }}
 
 jobs:
   deploy:
