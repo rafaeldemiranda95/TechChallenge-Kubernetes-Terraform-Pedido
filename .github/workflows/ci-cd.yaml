@@ -25,22 +25,28 @@ jobs:
 
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: "x.y.z" # Especifique sua versão do Terraform, se necessário
 
       - name: Terraform Init
         run: terraform init
+        working-directory: terraform
+
+      - name: Terraform Validate
+        run: terraform validate
         working-directory: terraform
 
       - name: Terraform Plan
         run: terraform plan
         working-directory: terraform
 
-      # - name: Terraform Apply
-      #   run: terraform apply -auto-approve
-      #   working-directory: terraform
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: terraform
 
       - name: Get GKE credentials
         run: gcloud container clusters get-credentials tech-challenge-pedido --zone us-central1 --project ${{ secrets.GCP_PROJECT_ID }}
 
       - name: Deploy Kubernetes Configs
-        run: kubectl apply -f k8s/
+        run: kubectl apply -f k8s/ 
         working-directory: terraform
