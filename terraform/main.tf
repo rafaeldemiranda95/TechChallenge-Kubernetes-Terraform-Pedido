@@ -14,10 +14,9 @@ resource "google_container_cluster" "cluster" {
   location = "us-central1"
 
   remove_default_node_pool = true
-  initial_node_count       = 1
 
-  network    = data.google_compute_network.vpc.name
-  subnetwork = data.google_compute_subnetwork.subnetwork.name
+  network    = google_compute_network.vpc.name
+  subnetwork = google_compute_subnetwork.subnetwork.name
 
   node_pool {
     name       = "tech-challenge-node-pool"
