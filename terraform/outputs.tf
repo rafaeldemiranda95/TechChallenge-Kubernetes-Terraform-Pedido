@@ -1,12 +1,12 @@
-# output "vpc_id" {
-#   description = "O ID da VPC"
-#   value       = google_compute_network.vpc.id
-# }
+output "vpc_id" {
+  description = "O ID da VPC"
+  value       = google_compute_network.vpc.id
+}
 
-# output "subnet_ids" {
-#   description = "Os IDs das sub-redes"
-#   value       = google_compute_subnetwork.subnetwork.id
-# }
+output "subnet_ids" {
+  description = "Os IDs das sub-redes"
+  value       = google_compute_subnetwork.subnetwork.id
+}
 
 output "cluster_endpoint" {
   description = "Ponto de extremidade para o plano de controle do GKE."
