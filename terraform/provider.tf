@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = var.gcp_credentials
-  project     = var.gcp_project
-  region      = var.gcp_region
+  credentials = file("path-to-your-credentials-file.json")
+  project     = "your-gcp-project-id"
+  region      = "us-west1" # Escolha a região adequada
 }

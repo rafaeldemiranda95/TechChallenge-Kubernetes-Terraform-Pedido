@@ -1,15 +1,14 @@
 name: Tech Challenge - Deploy Infrastructure - GKE
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
     paths:
       - "k8s/**"
-      - "terraform/**"
       - ".github/workflows/**"
 
 jobs:
@@ -19,11 +18,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Configuração do Terraform
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
-
-      # Configuração do Cloud SDK
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.2.0
         with:
@@ -31,26 +25,13 @@ jobs:
           service_account_key: ${{ secrets.SA_KEY }}
           export_default_credentials: true
 
-      # Terraform Init e Apply
-      - name: Terraform Init
-        run: terraform init
-        working-directory: ./terraform
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: ./terraform
-        env:
-          TF_VAR_gcp_credentials: ${{ secrets.SA_KEY }}
-          TF_VAR_gcp_project: ${{ secrets.PROJECT_ID }}
-          TF_VAR_gcp_region: us-west1
-
-      # Instalação do plugin gke-gcloud-auth
       - name: Install gke-gcloud-auth-plugin
         run: gcloud components install gke-gcloud-auth-plugin
 
-      # Obtenção das credenciais do GKE
       - name: GKE credentials
-        run: gcloud container clusters get-credentials tech-challenge-cluster --zone us-central1 --project ${{ secrets.PROJECT_ID }}
+        run: |-
+          gcloud container clusters get-credentials tech-challenge --zone us-central1 --project ${{ secrets.PROJECT_ID }}
 
-      # Implantação no Kubernetes
-      - name: Deploy to Kubernetes
-        run: kubectl apply -f k8s/
+      - name: Deploy
+        run: |-
+          kubectl apply -f k8s/

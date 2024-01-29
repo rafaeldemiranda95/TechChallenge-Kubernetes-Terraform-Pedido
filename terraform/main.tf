@@ -1,3 +1,7 @@
+provider "google" {
+  project = "tech-challenge"
+  region  = "us-west1"
+}
 resource "google_compute_network" "vpc" {
   name                    = "tech-challenge-vpc"
   auto_create_subnetworks = false
@@ -17,12 +21,9 @@ resource "google_container_cluster" "cluster" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = google_compute_network.vpc.name
-  subnetwork = google_compute_subnetwork.subnetwork.name
-
   node_pool {
     name       = "tech-challenge-node-pool"
-    node_count = 3
+    node_count = 1
 
     node_config {
       machine_type = "g1-small"
@@ -35,3 +36,5 @@ resource "google_container_cluster" "cluster" {
     }
   }
 }
+
+
