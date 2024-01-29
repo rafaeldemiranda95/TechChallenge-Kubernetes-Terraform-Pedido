@@ -4,14 +4,16 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "k8s/**"
+      - ".github/workflows/**"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: terraform
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -23,26 +25,13 @@ jobs:
           service_account_key: ${{ secrets.SA_KEY }}
           export_default_credentials: true
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: "1.1.0"
-
-      - name: Terraform Init and Apply
-        run: |
-          terraform init
-          terraform apply -auto-approve
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-
-
       - name: Install gke-gcloud-auth-plugin
         run: gcloud components install gke-gcloud-auth-plugin
 
       - name: GKE credentials
-        run: |
-          gcloud container clusters get-credentials tech-challenge-cluster --zone us-central1 --project ${{ secrets.PROJECT_ID }}
+        run: |-
+          gcloud container clusters get-credentials tech-challenge --zone us-central1 --project ${{ secrets.PROJECT_ID }}
 
-      - name: Deploy Kubernetes Configurations
-        run: |
+      - name: Deploy
+        run: |-
           kubectl apply -f k8s/

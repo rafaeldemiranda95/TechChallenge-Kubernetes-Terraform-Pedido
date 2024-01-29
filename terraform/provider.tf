@@ -1,5 +1,5 @@
 # provider "google" {
-#   credentials = file(var.google_application_credentials)
-#   project     = "TechChallenge"
-#   region      = "us-central1"
+#   credentials = file("path-to-your-credentials-file.json")
+#   project     = "your-gcp-project-id"
+#   region      = "us-west1" # Escolha a região adequada
 # }

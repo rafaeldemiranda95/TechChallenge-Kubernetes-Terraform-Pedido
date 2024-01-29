@@ -1,18 +1,18 @@
 provider "google" {
-  project = "TechChallenge"
-  region  = "us-central1"
+  project = "tech-challenge"
+  region  = "us-west1"
 }
-# resource "google_compute_network" "vpc" {
-#   name                    = "tech-challenge-vpc"
-#   auto_create_subnetworks = false
-# }
+resource "google_compute_network" "vpc" {
+  name                    = "tech-challenge-vpc"
+  auto_create_subnetworks = false
+}
 
-# resource "google_compute_subnetwork" "subnetwork" {
-#   name          = "tech-challenge-subnetwork"
-#   ip_cidr_range = "10.0.1.0/24"
-#   region        = "us-central1"
-#   network       = google_compute_network.vpc.id
-# }
+resource "google_compute_subnetwork" "subnetwork" {
+  name          = "tech-challenge-subnetwork"
+  ip_cidr_range = "10.0.1.0/24"
+  region        = "us-central1"
+  network       = google_compute_network.vpc.id
+}
 
 resource "google_container_cluster" "cluster" {
   name     = "tech-challenge-cluster"
