@@ -1,6 +1,6 @@
 provider "google" {
-  project = "tech-challenge" # Substitua pelo seu ID de projeto do GCP
-  region  = "us-west1"       # Região onde o Terraform criará os recursos, se necessário
+  project = "techchallenge-411721"
+  region  = "us-west1"
 }
 
 resource "google_compute_network" "vpc" {
@@ -11,13 +11,13 @@ resource "google_compute_network" "vpc" {
 resource "google_compute_subnetwork" "subnetwork" {
   name          = "tech-challenge-subnetwork"
   ip_cidr_range = "10.0.1.0/24"
-  region        = "us-central1" # Região da sub-rede
+  region        = "us-central1"
   network       = google_compute_network.vpc.id
 }
 
 resource "google_container_cluster" "cluster" {
-  name     = "tech-challenge-pedido" # Nome do cluster
-  location = "us-central1"           # Região do cluster
+  name     = "tech-challenge-pedido"
+  location = "us-central1"
 
   remove_default_node_pool = true
   initial_node_count       = 1
