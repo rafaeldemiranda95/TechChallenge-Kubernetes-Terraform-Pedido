@@ -34,9 +34,9 @@ jobs:
         run: terraform plan
         working-directory: terraform
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: terraform
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve
+      #   working-directory: terraform
 
       - name: Get GKE credentials
         run: gcloud container clusters get-credentials tech-challenge-pedido --zone us-central1 --project ${{ secrets.GCP_PROJECT_ID }}
