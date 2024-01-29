@@ -91,11 +91,11 @@ jobs:
         run: terraform init
         working-directory: ./terraform
 
-      # Importação do recurso VPC, se necessário
-      - name: Import VPC if exists
-        run: |
-          terraform import google_compute_network.vpc projects/${{ secrets.PROJECT_ID }}/global/networks/tech-challenge-vpc || echo "VPC not found or already managed by Terraform"
-        working-directory: ./terraform
+      # # Importação do recurso VPC, se necessário
+      # - name: Import VPC if exists
+      #   run: |
+      #     terraform import google_compute_network.vpc projects/${{ secrets.PROJECT_ID }}/global/networks/tech-challenge-vpc || echo "VPC not found or already managed by Terraform"
+      #   working-directory: ./terraform
 
       # Terraform Apply
       - name: Terraform Apply
