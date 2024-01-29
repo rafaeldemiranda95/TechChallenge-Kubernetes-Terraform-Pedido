@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  TF_VAR_gcp_credentials_file: ${{ secrets.GCP_CREDENTIALS_FILE }}
+  TF_VAR_gcp_credentials_file: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
   TF_VAR_gcp_project_id: ${{ secrets.GCP_PROJECT_ID }}
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
         working-directory: terraform
 
       - name: Get GKE credentials
-        run: gcloud container clusters get-credentials tech-challenge-pedido --zone us-central1 --project ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        run: gcloud container clusters get-credentials tech-challenge-pedido --zone us-central1 --project ${{ secrets.GCP_PROJECT_ID }}
 
       - name: Deploy Kubernetes Configs
         run: kubectl apply -f k8s/
