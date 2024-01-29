@@ -1,11 +1,11 @@
 output "vpc_id" {
-  description = "O ID da VPC criada"
-  value       = google_compute_network.vpc.id
+  description = "O ID da VPC"
+  value       = data.google_compute_network.vpc.id
 }
 
 output "subnet_id" {
-  description = "O ID da sub-rede criada"
-  value       = google_compute_subnetwork.subnetwork.id
+  description = "O ID da sub-rede"
+  value       = data.google_compute_subnetwork.subnetwork.id
 }
 
 output "cluster_endpoint" {
@@ -34,11 +34,11 @@ output "node_pool_name" {
 }
 
 output "vpc_self_link" {
-  description = "O self link da VPC criada"
-  value       = google_compute_network.vpc.self_link
+  description = "O self link da VPC"
+  value       = data.google_compute_network.vpc.self_link
 }
 
 output "subnet_self_link" {
-  description = "O self link da sub-rede criada"
-  value       = google_compute_subnetwork.subnetwork.self_link
+  description = "O self link da sub-rede"
+  value       = data.google_compute_subnetwork.subnetwork.self_link
 }
