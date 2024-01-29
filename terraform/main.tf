@@ -1,9 +1,7 @@
 provider "google" {
-  credentials = jsonencode(var.gcp_credentials_json)
-  project     = var.gcp_project_id
-  region      = "us-central1"
+  project = "tech-challenge"
+  region  = "us-west1"
 }
-
 resource "google_compute_network" "vpc" {
   name                    = "tech-challenge-vpc"
   auto_create_subnetworks = false
@@ -17,7 +15,7 @@ resource "google_compute_subnetwork" "subnetwork" {
 }
 
 resource "google_container_cluster" "cluster" {
-  name     = "tech-challenge-pedido"
+  name     = "tech-challenge-cluster"
   location = "us-central1"
 
   remove_default_node_pool = true
@@ -38,3 +36,5 @@ resource "google_container_cluster" "cluster" {
     }
   }
 }
+
+

@@ -30,21 +30,5 @@ variable "JWT_SECRET" {
 
 variable "key_name" {
   description = "The key name to use for the instance"
-  default     = "your-default-key-name"
-}
-
-
-variable "gcp_credentials_file" {
-  description = "Path to the GCP credentials file"
-  type        = string
-}
-
-variable "gcp_project_id" {
-  description = "GCP Project ID"
-  type        = string
-}
-
-variable "gcp_credentials_json" {
-  description = "GCP Credentials JSON"
-  type        = string
+  default     = "your-default-key-name"  # Por favor, substitua 'your-default-key-name' pelo nome padrão da sua chave, se houver.
 }
