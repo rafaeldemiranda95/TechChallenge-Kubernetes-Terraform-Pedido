@@ -43,3 +43,8 @@ variable "gcp_project_id" {
   description = "GCP Project ID"
   type        = string
 }
+
+variable "gcp_credentials_json" {
+  description = "GCP Credentials JSON"
+  type        = string
+}
