@@ -1,7 +1,7 @@
-provider "google" {
-  project = "TechChallenge"
-  region  = "us-central1"
-}
+# provider "google" {
+#   project = "TechChallenge"
+#   region  = "us-central1"
+# }
 # resource "google_compute_network" "vpc" {
 #   name                    = "tech-challenge-vpc"
 #   auto_create_subnetworks = false
