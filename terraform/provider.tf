@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("path-to-your-credentials-file.json")
+  credentials = jsondecode(base64decode(var.google_credentials))
   project     = "TechChallenge"
   region      = "us-central1"
 }
