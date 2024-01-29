@@ -1,28 +1,29 @@
 provider "google" {
-  project = "tech-challenge-pedido"
-  region  = "us-central1"
+  project = "tech-challenge"
+  region  = "us-west1"
 }
+
 resource "google_compute_network" "vpc" {
-  name                    = "tech-challenge-pedido-vpc"
+  name                    = "tech-challenge-vpc"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "subnetwork" {
-  name          = "tech-challenge-pedido-subnetwork"
+  name          = "tech-challenge-subnetwork"
   ip_cidr_range = "10.0.1.0/24"
   region        = "us-central1"
   network       = google_compute_network.vpc.id
 }
 
 resource "google_container_cluster" "cluster" {
-  name     = "tech-challenge-pedido-cluster"
-  location = "us-central1"
+  name     = "tech-challenge-pedido" # Alterado para corresponder ao nome desejado
+  location = "us-central1"           # Certifique-se de que a localização esteja correta
 
   remove_default_node_pool = true
   initial_node_count       = 1
 
   node_pool {
-    name       = "tech-challenge-pedido-node-pool"
+    name       = "tech-challenge-node-pool"
     node_count = 1
 
     node_config {
@@ -36,5 +37,3 @@ resource "google_container_cluster" "cluster" {
     }
   }
 }
-
-
