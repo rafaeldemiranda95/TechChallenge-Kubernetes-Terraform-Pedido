@@ -1,6 +1,7 @@
 provider "google" {
-  project = "techchallenge-411721"
-  region  = "us-west1"
+  credentials = var.gcp_credentials_file
+  project     = var.gcp_project_id
+  region      = "us-central1"
 }
 
 resource "google_compute_network" "vpc" {
