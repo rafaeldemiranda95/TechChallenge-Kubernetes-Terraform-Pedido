@@ -6,7 +6,6 @@ resource "google_compute_network" "vpc" {
   name                    = "tech-challenge-pedido-vpc"
   auto_create_subnetworks = false
 }
-
 resource "google_compute_subnetwork" "subnetwork" {
   name          = "tech-challenge-pedido-subnetwork"
   ip_cidr_range = "10.0.1.0/24"
